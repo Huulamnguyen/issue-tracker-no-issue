@@ -6,13 +6,12 @@ import { issueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Issue } from "@prisma/client";
 import {
+  Box,
   Button,
   Callout,
-  TextField,
-  Select,
-  Flex,
   Grid,
-  Box,
+  Select,
+  TextField,
 } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
@@ -58,8 +57,8 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
         </Callout.Root>
       )}
       <form className="space-y-3" onSubmit={onSubmit}>
-        <Grid columns={{ initial: "1", lg: "8" }} gap="3">
-          <Box className="md:col-span-7">
+        <Grid gap="3">
+          <Box>
             <TextField.Root>
               <TextField.Input
                 defaultValue={issue?.title}
