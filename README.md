@@ -5,7 +5,7 @@
 ## Description:
 
 - A mordern Full-stack NextJS Application **Issue Tracker** that allow users to manage, maintain, create, update their issues during development.
-- App Production Demo: https://issue-tracker-nextjs.vercel.app/
+- App Production Demo: https://issue-tracker-no-issue.vercel.app/
 
 ## Business Perspective:
 
