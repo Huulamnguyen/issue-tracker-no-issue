@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -26,6 +26,25 @@ enum Status {
   OPEN
   IN_PROGRESS
   CLOSED
+}
+
+model Question {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  category    Category @default(OTHER)
+}
+
+enum Category {
+  SHIPPING
+  DISCOUNT
+  ORDER
+  HOURS
+  ADDRESS
+  REFUND
+  MISSING
+  DAMAGE
+  OTHER
 }
 
 model Account {
