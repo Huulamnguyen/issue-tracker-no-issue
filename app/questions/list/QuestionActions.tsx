@@ -1,11 +1,9 @@
 import { Button, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 
-import React from "react";
-
 const QuestionActions = () => {
   return (
-    <Flex justify="between">
+    <Flex justify="end">
       <Button>
         <Link href="/questions/new">New Question</Link>
       </Button>
