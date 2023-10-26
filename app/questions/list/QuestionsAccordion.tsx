@@ -1,22 +1,37 @@
 "use client";
-import React from "react";
+import QuestionCategoryBadge from "@/app/components/QuestionCategoryBadge";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
+import { Question } from "@prisma/client";
+import { ScrollArea } from "@radix-ui/themes";
+import ReactMarkdown from "react-markdown";
 
-const QuestionsAccordion = () => {
-  const defaultContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+interface Props {
+  questions: Question[];
+}
+
+const QuestionsAccordion = ({ questions }: Props) => {
   return (
-    <Accordion selectionMode="multiple">
-      <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
-        {defaultContent}
-      </AccordionItem>
-      <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
-        {defaultContent}
-      </AccordionItem>
-      <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
-        {defaultContent}
-      </AccordionItem>
-    </Accordion>
+    <ScrollArea
+      radius="medium"
+      type="scroll"
+      scrollbars="vertical"
+      style={{ height: 650 }}
+    >
+      <Accordion selectionMode="multiple">
+        {questions.map((question) => (
+          <AccordionItem
+            key={question.id}
+            aria-label={question.title}
+            title={question.title}
+            startContent={
+              <QuestionCategoryBadge category={question.category} />
+            }
+          >
+            <ReactMarkdown>{question.description}</ReactMarkdown>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </ScrollArea>
   );
 };
 
