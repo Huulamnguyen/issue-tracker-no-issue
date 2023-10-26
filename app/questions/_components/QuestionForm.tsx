@@ -2,9 +2,9 @@
 
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
-import { issueSchema } from "@/app/validationSchemas";
+import { questionSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Issue, Status } from "@prisma/client";
+import { Question } from "@prisma/client";
 import {
   Box,
   Button,
@@ -21,33 +21,40 @@ import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 
-type IssueFormData = z.infer<typeof issueSchema>;
+type QuestionFormData = z.infer<typeof questionSchema>;
 
-const IssueForm = ({ issue }: { issue?: Issue }) => {
-  const router = useRouter();
+const QuestionForm = ({ question }: { question?: Question }) => {
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IssueFormData>({
-    resolver: zodResolver(issueSchema),
+  } = useForm<QuestionFormData>({
+    resolver: zodResolver(questionSchema),
   });
+
+  const router = useRouter();
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const statuses: { label: string; value?: Status }[] = [
-    { label: "Open", value: "OPEN" },
-    { label: "In Progress", value: "IN_PROGRESS" },
-    { label: "Closed", value: "CLOSED" },
+  const categories = [
+    { label: "Shipping", value: "SHIPPING" },
+    { label: "Discount", value: "DISCOUNT" },
+    { label: "Order", value: "ORDER" },
+    { label: "Hours", value: "HOURS" },
+    { label: "Address", value: "ADDRESS" },
+    { label: "Refund", value: "REFUND" },
+    { label: "Missing", value: "MISSING" },
+    { label: "Damage", value: "DAMAGE" },
+    { label: "Other", value: "OTHER" },
   ];
 
   const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
     try {
       setSubmitting(true);
-      if (issue) await axios.patch("/api/issues/" + issue.id, data);
-      else await axios.post("/api/issues", data);
-      router.push("/issues/list");
+      await axios.post("/api/questions", data);
+      router.push("/questions/list");
       router.refresh();
     } catch (error) {
       setSubmitting(false);
@@ -67,54 +74,44 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           <Box>
             <TextField.Root>
               <TextField.Input
-                defaultValue={issue?.title}
-                placeholder="Title"
+                placeholder="Question title"
                 {...register("title")}
               />
             </TextField.Root>
           </Box>
-          {issue && (
-            <Box width="auto">
-              <Controller
-                name="status"
-                control={control}
-                defaultValue={issue?.status}
-                render={({ field: { onChange } }) => (
-                  <Select.Root
-                    defaultValue={issue?.status}
-                    onValueChange={(value) => onChange(value)}
-                  >
-                    <Select.Trigger />
-                    <Select.Content>
-                      {statuses.map((status) => (
-                        <Select.Item
-                          key={status.value}
-                          disabled={issue?.status === status.value}
-                          value={status.value!}
-                        >
-                          {status.label}
-                        </Select.Item>
-                      ))}
-                    </Select.Content>
-                  </Select.Root>
-                )}
-              />
-            </Box>
-          )}
+          <Box>
+            <Controller
+              name="category"
+              control={control}
+              render={({ field: { onChange } }) => (
+                <Select.Root onValueChange={(value) => onChange(value)}>
+                  <Select.Trigger placeholder="Choose a category" />
+                  <Select.Content>
+                    {categories.map((category) => (
+                      <Select.Item key={category.value} value={category.value}>
+                        {category.label}
+                      </Select.Item>
+                    ))}
+                  </Select.Content>
+                </Select.Root>
+              )}
+            />
+          </Box>
         </Grid>
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
         <Controller
           name="description"
           control={control}
-          defaultValue={issue?.description}
+          defaultValue="Question Description"
           render={({ field }) => (
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
+
         <Button disabled={isSubmitting}>
-          {issue ? "Update Issue" : "Submit New Issue"}{" "}
+          Submit New Question
           {isSubmitting && <Spinner />}
         </Button>
       </form>
@@ -122,4 +119,4 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   );
 };
 
-export default IssueForm;
+export default QuestionForm;

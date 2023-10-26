@@ -1,7 +1,16 @@
-import React from "react";
+import dynamic from "next/dynamic";
+import QuestionFormSkeleton from "./loading";
+
+const QuestionForm = dynamic(
+  () => import("@/app/questions/_components/QuestionForm"),
+  {
+    ssr: false,
+    loading: () => <QuestionFormSkeleton />,
+  }
+);
 
 const NewQuestionPage = () => {
-  return <div>NewQuestionpage</div>;
+  return <QuestionForm />;
 };
 
 export default NewQuestionPage;
