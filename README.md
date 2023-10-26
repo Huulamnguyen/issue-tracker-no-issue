@@ -17,16 +17,22 @@
 - NextJS, TailwindCSS, Prisma, MySQL
 
 - Other tools:
-  - Zod: form validation
+  - Zod: form and request validation (both Frontend and backend)
   - Axios: fetching API
   - SimpleMDE: basic markdown interface
-  - Shopify APIs (for advanced features)
+  - ReChart: chart, sumnmary dashboard
+  - Radix UI and Next UI: front end development
+  - Shopify / Shopify APIs: to manage customers and orders
+  - Vercel: deployment
+  - Planet Scale: database deployment
+  - Google Cloud Console: Next Auth integration
 
 ## Core Features:
 
-- Create, update, delete issues (DONE)
-- View Issues, issue detail (DONE)
-- Dashboard (DONE)
+- [DONE] ISSUE: View Create, update, delete issues
+- QUESTION: Vew, create, update, delete questions
+- SETTING: Conffigure and connect to Shopify by Shopify APIs
+- [DONE] Dashboard: Chart, Summary
 
 ## Advanced Features:
 
