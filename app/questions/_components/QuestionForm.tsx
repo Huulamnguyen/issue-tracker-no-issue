@@ -50,10 +50,10 @@ const QuestionForm = ({ question }: { question?: Question }) => {
   ];
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
     try {
       setSubmitting(true);
-      await axios.post("/api/questions", data);
+      if (question) axios.patch("/api/questions/" + question.id, data);
+      else await axios.post("/api/questions", data);
       router.push("/questions/list");
       router.refresh();
     } catch (error) {
@@ -74,6 +74,7 @@ const QuestionForm = ({ question }: { question?: Question }) => {
           <Box>
             <TextField.Root>
               <TextField.Input
+                defaultValue={question?.title}
                 placeholder="Question title"
                 {...register("title")}
               />
@@ -83,12 +84,24 @@ const QuestionForm = ({ question }: { question?: Question }) => {
             <Controller
               name="category"
               control={control}
+              defaultValue={question?.category}
               render={({ field: { onChange } }) => (
-                <Select.Root onValueChange={(value) => onChange(value)}>
-                  <Select.Trigger placeholder="Choose a category" />
+                <Select.Root
+                  defaultValue={question?.category}
+                  onValueChange={(value) => onChange(value)}
+                >
+                  <Select.Trigger
+                    placeholder={
+                      question ? question.category : "Choose a category"
+                    }
+                  />
                   <Select.Content>
                     {categories.map((category) => (
-                      <Select.Item key={category.value} value={category.value}>
+                      <Select.Item
+                        key={category.value}
+                        value={category.value}
+                        disabled={question?.category === category.value}
+                      >
                         {category.label}
                       </Select.Item>
                     ))}
@@ -103,7 +116,7 @@ const QuestionForm = ({ question }: { question?: Question }) => {
         <Controller
           name="description"
           control={control}
-          defaultValue="Question Description"
+          defaultValue={question?.description}
           render={({ field }) => (
             <SimpleMDE placeholder="Description" {...field} />
           )}
@@ -111,7 +124,7 @@ const QuestionForm = ({ question }: { question?: Question }) => {
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
         <Button disabled={isSubmitting}>
-          Submit New Question
+          {question ? "Update Question" : "Submit New Question"}{" "}
           {isSubmitting && <Spinner />}
         </Button>
       </form>

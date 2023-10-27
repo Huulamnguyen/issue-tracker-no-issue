@@ -7,7 +7,9 @@ import { CalloutMessage } from "@/app/components";
 import prisma from "@/prisma/client";
 
 const QuestionsPage = async () => {
-  const questions = await prisma.question.findMany();
+  const questions = await prisma.question.findMany({
+    orderBy: { category: "asc" },
+  });
 
   const session = await getServerSession(authOptions);
   if (session) {
