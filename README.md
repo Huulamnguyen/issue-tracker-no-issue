@@ -30,7 +30,7 @@
 ## Core Features:
 
 - [DONE] ISSUE: View Create, update, delete issues
-- QUESTION: Vew, create, update, delete questions
+- [DONE] QUESTION: Vew, create, update, delete questions
 - SETTING: Conffigure and connect to Shopify by Shopify APIs
 - [DONE] Dashboard: Chart, Summary
 
@@ -94,6 +94,10 @@
   - Setting up Error Tracking: Error Tracking Tools by sentry.io
   - Setting up the Production Database: using PLanetScale
   - Deploying to Vercel
+
+## Refactor:
+
+- DeleteIssueButton and DeleteQuestionButton toreusable DeleteButton components
 
 ## Development Getting Started
 
