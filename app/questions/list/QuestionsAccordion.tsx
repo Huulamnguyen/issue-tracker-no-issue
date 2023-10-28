@@ -22,7 +22,7 @@ const QuestionsAccordion = ({ questions }: Props) => {
       scrollbars="vertical"
       style={{ height: 650 }}
     >
-      <Accordion selectionMode="multiple">
+      <Accordion>
         {questions.map((question) => (
           <AccordionItem
             key={question.id}
