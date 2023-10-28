@@ -3,16 +3,18 @@ import QuestionCategoryBadge from "@/app/components/QuestionCategoryBadge";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Question } from "@prisma/client";
 import { Flex, ScrollArea } from "@radix-ui/themes";
+import { useSession } from "next-auth/react";
 import ReactMarkdown from "react-markdown";
-import EditQuestionButton from "../edit/[id]/EditQuestionButton";
-import DeleteIssueButton from "@/app/issues/[id]/DeleteIssueButton";
 import DeleteQuestionButton from "../edit/[id]/DeleteQuestionButton";
+import EditQuestionButton from "../edit/[id]/EditQuestionButton";
 
 interface Props {
   questions: Question[];
 }
 
 const QuestionsAccordion = ({ questions }: Props) => {
+  const { status } = useSession();
+
   return (
     <ScrollArea
       radius="medium"
@@ -31,10 +33,12 @@ const QuestionsAccordion = ({ questions }: Props) => {
             }
           >
             <ReactMarkdown>{question.description}</ReactMarkdown>
-            <Flex justify="end" mt="3" gap="3">
-              <DeleteQuestionButton questionId={question.id} />
-              <EditQuestionButton questionId={question.id} />
-            </Flex>
+            {status === "authenticated" && (
+              <Flex justify="end" mt="3" gap="3">
+                <DeleteQuestionButton questionId={question.id} />
+                <EditQuestionButton questionId={question.id} />
+              </Flex>
+            )}
           </AccordionItem>
         ))}
       </Accordion>
