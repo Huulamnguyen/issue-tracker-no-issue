@@ -4,6 +4,7 @@ import { Flex, Text } from "@radix-ui/themes";
 import { getServerSession } from "next-auth";
 import QuestionActions from "./QuestionActions";
 import QuestionsAccordion from "./QuestionsAccordion";
+import { Metadata } from "next";
 
 const QuestionsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -19,6 +20,11 @@ const QuestionsPage = async () => {
       <QuestionsAccordion questions={questions} />
     </Flex>
   );
+};
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions",
+  description: "View all questions",
 };
 
 export default QuestionsPage;
