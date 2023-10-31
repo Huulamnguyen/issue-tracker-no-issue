@@ -2,7 +2,7 @@
 import QuestionCategoryBadge from "@/app/components/QuestionCategoryBadge";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Question } from "@prisma/client";
-import { Flex, ScrollArea } from "@radix-ui/themes";
+import { Flex, ScrollArea, Card } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import ReactMarkdown from "react-markdown";
 import DeleteQuestionButton from "../edit/[id]/DeleteQuestionButton";
@@ -16,12 +16,7 @@ const QuestionsAccordion = ({ questions }: Props) => {
   const { status } = useSession();
 
   return (
-    <ScrollArea
-      radius="medium"
-      type="scroll"
-      scrollbars="vertical"
-      style={{ height: 650 }}
-    >
+    <Card>
       <Accordion>
         {questions.map((question) => (
           <AccordionItem
@@ -42,7 +37,7 @@ const QuestionsAccordion = ({ questions }: Props) => {
           </AccordionItem>
         ))}
       </Accordion>
-    </ScrollArea>
+    </Card>
   );
 };
 
