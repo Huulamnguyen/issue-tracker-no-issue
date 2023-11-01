@@ -7,8 +7,8 @@ export const issueSchema = z.object({
   customerEmail: z
     .string()
     .email({ message: "Invalid email address" })
-    .optional()
-    .nullable(),
+    .nullable()
+    .optional(),
   category: z
     .enum([
       "SHIPPING",
@@ -24,13 +24,7 @@ export const issueSchema = z.object({
       "OTHER",
     ])
     .default("OTHER"),
-  orderNumber: z
-    .string()
-    .startsWith("#ANS-", {
-      message: "Must provide a valid order number. Start with #ANS-",
-    })
-    .optional()
-    .nullable(),
+  orderNumber: z.string().optional().nullable(),
 });
 
 export const questionSchema = z.object({

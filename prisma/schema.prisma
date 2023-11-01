@@ -16,7 +16,7 @@ model Issue {
   title            String   @db.VarChar(255)
   description      String   @db.Text
   status           Status   @default(OPEN)
-  customerEmail    String?  @unique
+  customerEmail    String?
   category         Category @default(OTHER)
   orderNumber      String?  @db.VarChar(10)
   createdAt        DateTime @default(now())

@@ -7,9 +7,9 @@ interface Props {
   children: string;
 }
 
-const CalloutMessage = ({ children }: Props) => {
+const CalloutInfoMessage = ({ children }: Props) => {
   return (
-    <Callout.Root color="red">
+    <Callout.Root color="green">
       <Callout.Icon>
         <InfoCircledIcon />
       </Callout.Icon>
@@ -18,4 +18,4 @@ const CalloutMessage = ({ children }: Props) => {
   );
 };
 
-export default CalloutMessage;
+export default CalloutInfoMessage;

@@ -6,7 +6,7 @@ import { Flex, Grid } from "@radix-ui/themes";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import authOptions from "./auth/authOptions";
-import { CalloutMessage } from "./components";
+import { CalloutErrorMessage } from "./components";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -32,7 +32,9 @@ export default async function Home() {
       </Grid>
     );
   }
-  return <CalloutMessage>Access Denied. Please Login!</CalloutMessage>;
+  return (
+    <CalloutErrorMessage>Access Denied. Please Login!</CalloutErrorMessage>
+  );
 }
 
 export const dynamic = "force-dynamic";

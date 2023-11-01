@@ -6,4 +6,5 @@ export { default as AnnouncementBar } from "./AnnouncementBar";
 export { default as CustomCard } from "./CustomCard";
 export { default as Spinner } from "./Spinner";
 export { default as Skeleton } from "./Skeleton";
-export { default as CalloutMessage } from "./CalloutMessage";
+export { default as CalloutErrorMessage } from "./CalloutErrorMessage";
+export { default as CalloutInfoMessage } from "./CalloutInfoMessage";

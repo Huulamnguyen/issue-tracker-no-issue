@@ -1,11 +1,10 @@
 import authOptions from "@/app/auth/authOptions";
 import prisma from "@/prisma/client";
-import { Flex, Text } from "@radix-ui/themes";
+import { Box, Button, Card, Flex, Link, Text } from "@radix-ui/themes";
 import { getServerSession } from "next-auth";
 import QuestionActions from "./QuestionActions";
 import QuestionsAccordion from "./QuestionsAccordion";
 import { Metadata } from "next";
-import { CalloutMessage } from "@/app/components";
 
 const QuestionsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -19,14 +18,20 @@ const QuestionsPage = async () => {
       <Text size="5" color="violet">
         Frequently Asked Questions
       </Text>
-      <Text size="2">
+      <Text as="p" size="2">
         Official Angelina Nail Supply&apos;s Support Center. You can find a
         quick solution here.
       </Text>
-      <Text size="2">
+      <Text as="p" size="2">
         Our support emails angelinanailsupply@gmail.com or
         info@angelinanailsupply.com
       </Text>
+      <Text size="2">Can not find an answer. Submit the form below</Text>
+      <Box>
+        <Button size="2" variant="outline">
+          <Link href="/issues/new">Submit New Issue</Link>
+        </Button>
+      </Box>
       {session && <QuestionActions />}
       <QuestionsAccordion questions={questions} />
     </Flex>

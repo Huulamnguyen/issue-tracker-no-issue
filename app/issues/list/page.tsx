@@ -1,5 +1,5 @@
 import authOptions from "@/app/auth/authOptions";
-import CalloutMessage from "@/app/components/CalloutMessage";
+import { CalloutErrorMessage, CalloutInfoMessage } from "@/app/components";
 import Pagination from "@/app/components/Pagination";
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
@@ -46,9 +46,9 @@ const IssuesPage = async ({ searchParams }: Props) => {
           {issueCount > 0 ? (
             <IssueTable searchParams={searchParams} issues={issues} />
           ) : (
-            <CalloutMessage>
+            <CalloutInfoMessage>
               Well done! There is no issue or create a new one
-            </CalloutMessage>
+            </CalloutInfoMessage>
           )}
           <Pagination
             pageSize={pageSize}
@@ -59,7 +59,9 @@ const IssuesPage = async ({ searchParams }: Props) => {
       </>
     );
   }
-  return <CalloutMessage>Access Denied. Please login!</CalloutMessage>;
+  return (
+    <CalloutErrorMessage>Access Denied. Please login!</CalloutErrorMessage>
+  );
 };
 
 export const dynamic = "force-dynamic";

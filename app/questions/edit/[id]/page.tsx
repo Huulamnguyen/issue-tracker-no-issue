@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
-import CalloutMessage from "@/app/components/CalloutMessage";
+import CalloutMessage from "@/app/components/CalloutErrorMessage";
 
 const QuestionForm = dynamic(
   () => import("@/app/questions/_components/QuestionForm"),
