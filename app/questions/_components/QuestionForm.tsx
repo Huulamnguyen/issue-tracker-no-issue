@@ -46,6 +46,8 @@ const QuestionForm = ({ question }: { question?: Question }) => {
     { label: "Refund", value: "REFUND" },
     { label: "Missing", value: "MISSING" },
     { label: "Damage", value: "DAMAGE" },
+    { label: "Return", value: "RETURN" },
+    { label: "Warranty", value: "WARRANTY" },
     { label: "Other", value: "OTHER" },
   ];
 

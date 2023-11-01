@@ -14,6 +14,8 @@ const categoryMap: Record<
       | "plum"
       | "purple"
       | "violet"
+      | "mint"
+      | "lime"
       | "indigo";
   }
 > = {
@@ -25,6 +27,8 @@ const categoryMap: Record<
   REFUND: { label: "Refund", color: "plum" },
   MISSING: { label: "Missing", color: "tomato" },
   DAMAGE: { label: "Damage", color: "violet" },
+  RETURN: { label: "Return", color: "mint" },
+  WARRANTY: { label: "Warranty", color: "lime" },
   OTHER: { label: "Other", color: "indigo" },
 };
 

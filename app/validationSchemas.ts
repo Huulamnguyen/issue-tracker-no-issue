@@ -19,6 +19,8 @@ export const questionSchema = z.object({
       "REFUND",
       "MISSING",
       "DAMAGE",
+      "RETURN",
+      "WARRANTY",
       "OTHER",
     ])
     .default("OTHER"),
