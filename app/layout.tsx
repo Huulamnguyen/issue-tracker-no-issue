@@ -40,7 +40,7 @@ export default function RootLayout({
               className="min-h-screen bg-gray-50 flex flex-col"
             >
               <Link href="https://angelinanailsupply.com/" target="_blank">
-                <AnnouncementBar message={announcement}></AnnouncementBar>
+                <AnnouncementBar message={announcement} />
               </Link>
               <NavBar />
               <main className="p-5 flex-grow">
