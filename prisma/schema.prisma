@@ -16,6 +16,9 @@ model Issue {
   title            String   @db.VarChar(255)
   description      String   @db.Text
   status           Status   @default(OPEN)
+  customerEmail    String?  @unique
+  category         Category @default(OTHER)
+  orderNumer       String?   @db.VarChar(10)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   assignedToUserId String?  @db.VarChar(255)
@@ -44,6 +47,8 @@ enum Category {
   REFUND
   MISSING
   DAMAGE
+  RETURN
+  WARRANTY
   OTHER
 }
 
