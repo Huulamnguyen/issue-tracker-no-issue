@@ -81,9 +81,5 @@ export const patchIssueSchema = z.object({
       "OTHER",
     ])
     .default("OTHER"),
-  orderNumber: z
-    .string()
-    .startsWith("#ANS-", { message: "Must provide a valid order number" })
-    .optional()
-    .nullable(),
+  orderNumber: z.string().optional().nullable(),
 });
