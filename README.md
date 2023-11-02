@@ -31,8 +31,8 @@
 
 - [DONE] ISSUE: View Create, update, delete issues
 - [DONE] QUESTION: Vew, create, update, delete questions
-- SETTING: Conffigure and connect to Shopify by Shopify APIs
 - [DONE] Dashboard: Chart, Summary
+- SETTING: Conffigure and connect to Shopify by Shopify APIs
 
 ## Advanced Features:
 
@@ -40,13 +40,13 @@
 - [DONE] Assign users, admin pannel
 - [DONE] When an issue is assigned to a user, automatically set the status to IN_PROGRESS.
 - [DONE] On the Issue Detail page, add a drop-down list for changing the status of an issue
+- [DONE] Implement a support page that allow customers submit an issue, then show them on the Issue List
+- [IN_PROGRESS] Implement sending email when customers submit an issue or any update from their issues
 - Implement a descending sort on the Issue List page.
 - Add a drop-down list to select the page size.
 - Implement the ability to filter issues by assignee.
 - Introduce a feature to add comments below an issue.
 - Integration with Shopify Admin API to handle orders, customers
-- Implement a support page that allow customers submit an issue, then show them on the Issue List
-- Implement sending email when customers submit an issue or any update from their issues
 
 ## Development Progress:
 
