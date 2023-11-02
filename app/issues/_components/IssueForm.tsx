@@ -177,7 +177,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
               <TextField.Root>
                 <TextField.Input
                   defaultValue={issue?.orderNumber || undefined}
-                  placeholder="Order #ANS-xxxxx"
+                  placeholder="Order ANS-xxxx"
                   {...register("orderNumber")}
                 />
               </TextField.Root>
