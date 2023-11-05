@@ -1,5 +1,6 @@
 "use client";
 
+import { CalloutInfoMessage } from "@/app/components";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import { issueSchema } from "@/app/validationSchemas";
@@ -9,10 +10,10 @@ import {
   Box,
   Button,
   Callout,
+  Flex,
   Grid,
   Select,
   TextField,
-  Flex,
 } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
@@ -21,7 +22,6 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import { CalloutInfoMessage } from "@/app/components";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
