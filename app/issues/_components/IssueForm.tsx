@@ -63,7 +63,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     try {
       setSubmitting(true);
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
-      else await axios.post("/api/issues", data);
+      else {
+        await axios.post("/api/issues", data);
+      }
       setSucessfullySubmitted(true);
       setTimeout(() => {
         router.push("/questions/list");

@@ -26,6 +26,7 @@
   - Vercel: deployment
   - Planet Scale: database deployment
   - Google Cloud Console: Next Auth integration
+  - React Email: writing emails
 
 ## Core Features:
 

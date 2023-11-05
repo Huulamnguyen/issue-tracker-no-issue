@@ -8,3 +8,4 @@ export { default as Spinner } from "./Spinner";
 export { default as Skeleton } from "./Skeleton";
 export { default as CalloutErrorMessage } from "./CalloutErrorMessage";
 export { default as CalloutInfoMessage } from "./CalloutInfoMessage";
+export { default as EmailTemplate } from "./EmailTemplate";
