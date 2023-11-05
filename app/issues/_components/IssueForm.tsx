@@ -22,10 +22,12 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
+import { useSession } from "next-auth/react";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
+  const { status } = useSession();
   const router = useRouter();
   const {
     register,
@@ -66,7 +68,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       else await axios.post("/api/issues", data);
       setSucessfullySubmitted(true);
       setTimeout(() => {
-        router.push("/questions/list");
+        status === "unauthenticated"
+          ? router.push("/questions/list")
+          : router.push("/issues/list");
         router.refresh();
       }, 4000);
     } catch (error) {
@@ -78,10 +82,18 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
 
   if (sucessfullySubmitted) {
     return (
-      <CalloutInfoMessage>
-        Susucessfully Submitted the form. We will get back to you soon by your
-        email!
-      </CalloutInfoMessage>
+      <>
+        {status === "unauthenticated" ? (
+          <CalloutInfoMessage>
+            Susucessfully Submitted the form. We will get back to you soon by
+            your email in next 48 hours. Thank you!
+          </CalloutInfoMessage>
+        ) : (
+          <CalloutInfoMessage>
+            Susucessfully Submitted the form. Redirecting to Issue List
+          </CalloutInfoMessage>
+        )}
+      </>
     );
   }
 
