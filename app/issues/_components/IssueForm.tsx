@@ -67,12 +67,15 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
       else await axios.post("/api/issues", data);
       setSucessfullySubmitted(true);
-      setTimeout(() => {
-        status === "unauthenticated"
-          ? router.push("/questions/list")
-          : router.push("/issues/list");
-        router.refresh();
-      }, 4000);
+      setTimeout(
+        () => {
+          status === "unauthenticated"
+            ? router.push("/questions/list")
+            : router.push("/issues/list");
+          router.refresh();
+        },
+        status === "unauthenticated" ? 4000 : 1000
+      );
     } catch (error) {
       setSubmitting(false);
       setSucessfullySubmitted(false);

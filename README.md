@@ -42,7 +42,7 @@
 - [DONE] On the Issue Detail page, add a drop-down list for changing the status of an issue
 - [DONE] Implement a support page that allow customers submit an issue, then show them on the Issue List
 - [IN_PROGRESS] Implement sending email when customers submit an issue or any update from their issues
-- Implement a descending sort on the Issue List page.
+- [IN_PROGRESS] Implement a descending sort on the Issue List page.
 - Add a drop-down list to select the page size.
 - Implement the ability to filter issues by assignee.
 - Introduce a feature to add comments below an issue.
@@ -97,7 +97,7 @@
 
 ## Refactor:
 
-- DeleteIssueButton and DeleteQuestionButton toreusable DeleteButton components
+- DeleteIssueButton and DeleteQuestionButton to a single reusable DeleteButton components
 
 ## Development Getting Started
 
