@@ -65,18 +65,22 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     try {
       setSubmitting(true);
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
-      else await axios.post("/api/issues", data);
-      setSucessfullySubmitted(true);
-
-      setTimeout(async () => {
+      else {
+        await axios.post("/api/issues", data);
         if (status === "unauthenticated") {
-          router.push("/questions/list");
           await axios.post("/api/send-confirm-email", data);
           await axios.post("/api/send-received-email", data);
         } else {
-          router.push("/issues/list");
           await axios.post("/api/send-received-email", data);
         }
+      }
+
+      setSucessfullySubmitted(true);
+      setTimeout(async () => {
+        status === "unauthenticated"
+          ? router.push("/questions/list")
+          : router.push("/issues/list");
+
         router.refresh();
       }, 1000);
     } catch (error) {
