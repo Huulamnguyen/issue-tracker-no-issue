@@ -9,10 +9,10 @@ import {
   Tailwind,
 } from "@react-email/components";
 
-const ConfirmationTemplate = ({ issue }: { issue: Issue }) => {
+const NewIssueSubmitTemplate = ({ issue }: { issue: Issue }) => {
   return (
     <Html>
-      <Preview>Thank you for submitting and for your patience</Preview>
+      <Preview>New Issue Request - {issue.title}</Preview>
       <Tailwind>
         <Body className="min-h-screen flex items-center justify-center">
           <Container>
@@ -20,9 +20,10 @@ const ConfirmationTemplate = ({ issue }: { issue: Issue }) => {
               Email Confirmation
             </Text>
             <Text as="div" className="text-center text-gray-600 mb-6">
-              Thank you for submitting the request with us. We will reach out to
-              you soon at your email {issue.customerEmail} with an update or
-              solution in next 48 hours!
+              Hey Admin, you have new issue request from {issue.customerEmail}.
+            </Text>
+            <Text as="div" className="text-center text-gray-600 mb-6">
+              Please reply to the issue ASAP
             </Text>
             <Card mx="5">
               <Text as="div" size="2" weight="bold">
@@ -35,10 +36,6 @@ const ConfirmationTemplate = ({ issue }: { issue: Issue }) => {
                 Description: {issue.description}
               </Text>
             </Card>
-            <Text as="div" className="text-gray-600 my-6">
-              If you have not received any responses from us in next 48 hours!
-              Please remind us by replying to this email
-            </Text>
             <Footer />
           </Container>
         </Body>
@@ -47,4 +44,4 @@ const ConfirmationTemplate = ({ issue }: { issue: Issue }) => {
   );
 };
 
-export default ConfirmationTemplate;
+export default NewIssueSubmitTemplate;

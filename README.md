@@ -42,7 +42,8 @@
 - [DONE] When an issue is assigned to a user, automatically set the status to IN_PROGRESS.
 - [DONE] On the Issue Detail page, add a drop-down list for changing the status of an issue
 - [DONE] Implement a support page that allow customers submit an issue, then show them on the Issue List
-- [IN_PROGRESS] Implement sending email when customers submit an issue or any update from their issues
+- [DONE] Implement sending confirmation email to customer
+- [DONE] Implement sending notification email to admin
 - [IN_PROGRESS] Implement a descending sort on the Issue List page.
 - Add a drop-down list to select the page size.
 - Implement the ability to filter issues by assignee.

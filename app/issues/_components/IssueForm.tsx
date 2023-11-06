@@ -17,12 +17,12 @@ import {
 } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import { useSession } from "next-auth/react";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
@@ -65,19 +65,20 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     try {
       setSubmitting(true);
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
-      else {
-        await axios.post("/api/issues", data);
-      }
+      else await axios.post("/api/issues", data);
       setSucessfullySubmitted(true);
-      setTimeout(
-        () => {
-          status === "unauthenticated"
-            ? router.push("/questions/list")
-            : router.push("/issues/list");
-          router.refresh();
-        },
-        status === "unauthenticated" ? 4000 : 1000
-      );
+
+      setTimeout(async () => {
+        if (status === "unauthenticated") {
+          router.push("/questions/list");
+          await axios.post("/api/send-confirm-email", data);
+          await axios.post("/api/send-received-email", data);
+        } else {
+          router.push("/issues/list");
+          await axios.post("/api/send-received-email", data);
+        }
+        router.refresh();
+      }, 1000);
     } catch (error) {
       setSubmitting(false);
       setSucessfullySubmitted(false);
