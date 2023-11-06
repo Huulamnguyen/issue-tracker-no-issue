@@ -11,9 +11,7 @@ import {
 const ConfirmationTemplate = ({ name }: { name: string }) => {
   return (
     <Html>
-      <Preview>
-        Thank you for joining our waitlist and for your patience
-      </Preview>
+      <Preview>Thank you for submitting and for your patience</Preview>
       <Tailwind>
         <Body className="bg-white">
           <Container>
