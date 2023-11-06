@@ -1,5 +1,6 @@
 "use client";
 
+import { CalloutInfoMessage } from "@/app/components";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
 import { issueSchema } from "@/app/validationSchemas";
@@ -9,10 +10,10 @@ import {
   Box,
   Button,
   Callout,
+  Flex,
   Grid,
   Select,
   TextField,
-  Flex,
 } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
@@ -21,11 +22,12 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import { CalloutInfoMessage } from "@/app/components";
+import { useSession } from "next-auth/react";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
+  const { status } = useSession();
   const router = useRouter();
   const {
     register,
@@ -67,10 +69,15 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
         await axios.post("/api/issues", data);
       }
       setSucessfullySubmitted(true);
-      setTimeout(() => {
-        router.push("/questions/list");
-        router.refresh();
-      }, 4000);
+      setTimeout(
+        () => {
+          status === "unauthenticated"
+            ? router.push("/questions/list")
+            : router.push("/issues/list");
+          router.refresh();
+        },
+        status === "unauthenticated" ? 4000 : 1000
+      );
     } catch (error) {
       setSubmitting(false);
       setSucessfullySubmitted(false);
@@ -80,10 +87,18 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
 
   if (sucessfullySubmitted) {
     return (
-      <CalloutInfoMessage>
-        Susucessfully Submitted the form. We will get back to you soon by your
-        email!
-      </CalloutInfoMessage>
+      <>
+        {status === "unauthenticated" ? (
+          <CalloutInfoMessage>
+            Susucessfully Submitted the form. We will get back to you soon by
+            your email in next 48 hours. Thank you!
+          </CalloutInfoMessage>
+        ) : (
+          <CalloutInfoMessage>
+            Susucessfully Submitted the form. Redirecting to Issue List
+          </CalloutInfoMessage>
+        )}
+      </>
     );
   }
 

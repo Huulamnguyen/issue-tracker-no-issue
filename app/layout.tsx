@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export const announcement =
-  "🎁💝 Happy Halloween Sale Sitewide up to 20% Oct 30 to Nov 01";
+  "🎁💝 Promotions and New Arrivals This November. Check them out now";
 
 export default function RootLayout({
   children,
@@ -39,7 +39,10 @@ export default function RootLayout({
               accentColor="violet"
               className="min-h-screen bg-gray-50 flex flex-col"
             >
-              <Link href="https://angelinanailsupply.com/" target="_blank">
+              <Link
+                href="https://angelinanailsupply.com/collections/promotion"
+                target="_blank"
+              >
                 <AnnouncementBar message={announcement} />
               </Link>
               <NavBar />
