@@ -44,7 +44,7 @@
 - [DONE] Implement a support page that allow customers submit an issue, then show them on the Issue List
 - [DONE] Implement sending confirmation email to customer
 - [DONE] Implement sending notification email to admin
-- [IN_PROGRESS] Implement a descending sort on the Issue List page.
+- [DONE] Implement a descending sort on the Issue List page.
 - Search issues
 - Search questions
 - Add a drop-down list to select the page size.
