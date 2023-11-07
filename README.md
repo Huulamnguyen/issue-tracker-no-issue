@@ -45,57 +45,12 @@
 - [DONE] Implement sending confirmation email to customer
 - [DONE] Implement sending notification email to admin
 - [IN_PROGRESS] Implement a descending sort on the Issue List page.
+- Search issues
+- Search questions
 - Add a drop-down list to select the page size.
 - Implement the ability to filter issues by assignee.
 - Introduce a feature to add comments below an issue.
 - Integration with Shopify Admin API to handle orders, customers
-
-## Development Progress:
-
-- [DONE] Create, update, delete issues
-- [DONE] Authentication with Next Auth:
-  - Installation: `npm i next-auth@4.23.1`
-  - Configured Google Provider
-  - Adding Prisma Adapter: `npm i @next-auth/prisma-adapter@1.0.7`
-  - Adding the Login and Logout Links
-  - Change the Layout of the NavBar
-  - Add a Dropdown Menu
-  - Troubleshooting: Avatar Not Loading
-  - Refactor the NavBar
-  - Add a loading skeleton
-  - Secure the application
-- [DONE] Assigning issues to Users
-  - Building the Assignee Select Component
-  - Populating the Assignee Select Component
-  - Setting Up React Query: TanStack Query: `npm i @tanstack/react-query@4.35.3`, fetch data from backend and store data in cache
-  - Add Assigned Issues to Prisma Schema
-  - Implementing the API
-  - Assigning an issue to a user
-  - Showing Toast Notification: `npm i react-hot-toast@2.4.1`
-  - Refactor the Assignee Select Component
-- [DONE] Filtering, Sorting, and Pagination
-  - Building Filter Component
-  - Filtering Issues
-  - Make columns sortable
-  - Sorting Issues
-  - Fix Filtering Bugs
-  - Generating Dummy Data
-  - Building the Pagination Component
-  - Implementing Pagination
-  - Paginating Issues
-  - Refactor: Extract IssueTable
-- [DONE] Dashboard
-  - Build the LatestIssues Component
-  - Building the IssueSummary Component
-  - Building the BarChart Component: using Recharts `npm i recharts@2.8.0`
-  - Laying out the Dashboard
-- [DONE] Going to Production
-  - Adding Metadata
-  - Optimizing Performacne Using React Cache
-  - Removing .env file
-  - Setting up Error Tracking: Error Tracking Tools by sentry.io
-  - Setting up the Production Database: using PLanetScale
-  - Deploying to Vercel
 
 ## Refactor:
 
