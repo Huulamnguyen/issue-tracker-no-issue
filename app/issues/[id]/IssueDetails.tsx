@@ -14,11 +14,15 @@ const IssueDetails = ({ issue }: { issue: Issue }) => {
         <QuestionCategoryBadge category={issue.category} />
         <Heading size="4">{issue.title}</Heading>
       </Flex>
-      <Flex className="space-x-3" my="2">
+      <Flex gap="3" my="2">
         <IssueStatusBadge status={issue.status} />
-        <Badge size="1">Created at {issue.createdAt.toDateString()}</Badge>
-        <Badge size="1">Last Updated at {issue.updatedAt.toDateString()}</Badge>
+        <Badge color="gray" size="1">
+          Created at {issue.createdAt.toDateString()}
+        </Badge>
       </Flex>
+      <Badge color="gray" size="1">
+        Last Updated at {issue.updatedAt.toDateString()}
+      </Badge>
       <Flex className="space-x-3" my="2">
         {issue.customerEmail && (
           <CustomCard label="Customer Email" value={issue.customerEmail} />
