@@ -20,6 +20,7 @@ const QuestionsAccordion = ({ questions }: Props) => {
       <Accordion>
         {questions.map((question) => (
           <AccordionItem
+            className="text-sm leading-relaxed"
             key={question.id}
             aria-label={question.title}
             title={question.title}
@@ -27,7 +28,9 @@ const QuestionsAccordion = ({ questions }: Props) => {
               <QuestionCategoryBadge category={question.category} />
             }
           >
-            <ReactMarkdown>{question.description}</ReactMarkdown>
+            <ReactMarkdown className="text-sm leading-relaxed">
+              {question.description}
+            </ReactMarkdown>
             {status === "authenticated" && (
               <Flex justify="end" mt="3" gap="3">
                 <DeleteQuestionButton questionId={question.id} />
