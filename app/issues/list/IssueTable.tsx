@@ -1,4 +1,4 @@
-import { IssueStatusBadge } from "@/app/components";
+import { IssueStatusBadge, QuestionCategoryBadge } from "@/app/components";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 import { Table } from "@radix-ui/themes";
 import Link from "next/link";
@@ -49,15 +49,22 @@ const IssueTable = ({ searchParams, issues }: Props) => {
           <Table.Row key={issue.id}>
             <Table.Cell>
               <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
-              <div className="block md:hidden">
+              <div className="block md:hidden space-x-3">
                 <IssueStatusBadge status={issue.status} />
+                <QuestionCategoryBadge category={issue.category} />
               </div>
             </Table.Cell>
             <Table.Cell className="hidden md:table-cell">
               <IssueStatusBadge status={issue.status} />
             </Table.Cell>
             <Table.Cell className="hidden md:table-cell">
+              <QuestionCategoryBadge category={issue.category} />
+            </Table.Cell>
+            <Table.Cell className="hidden md:table-cell">
               {issue.createdAt.toDateString()}
+            </Table.Cell>
+            <Table.Cell className="hidden md:table-cell">
+              {issue.updatedAt.toDateString()}
             </Table.Cell>
           </Table.Row>
         ))}
@@ -78,8 +85,18 @@ const columns: {
     className: "hidden md:table-cell",
   },
   {
+    label: "Category",
+    value: "category",
+    className: "hidden md:table-cell",
+  },
+  {
     label: "Created",
     value: "createdAt",
+    className: "hidden md:table-cell",
+  },
+  {
+    label: "Updated",
+    value: "updatedAt",
     className: "hidden md:table-cell",
   },
 ];
