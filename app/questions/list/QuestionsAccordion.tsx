@@ -2,7 +2,7 @@
 import QuestionCategoryBadge from "@/app/components/QuestionCategoryBadge";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Question } from "@prisma/client";
-import { Flex, ScrollArea, Card } from "@radix-ui/themes";
+import { Card, Flex } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import ReactMarkdown from "react-markdown";
 import DeleteQuestionButton from "../edit/[id]/DeleteQuestionButton";

@@ -4,6 +4,7 @@ import { Container, Flex } from "@radix-ui/themes";
 import { AiFillBug } from "react-icons/ai";
 import AuthStatus from "./AuthStatus";
 import NavLinks from "./NavLinks";
+import Link from "next/link";
 
 const NavBar = () => {
   return (
