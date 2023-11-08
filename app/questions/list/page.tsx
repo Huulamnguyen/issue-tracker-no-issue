@@ -14,22 +14,19 @@ const QuestionsPage = async () => {
   });
 
   return (
-    <Flex direction="column" gap="3">
+    <Flex direction="column" gap="2">
       <Text size="5" color="violet">
         Frequently Asked Questions
       </Text>
       <Text as="p" size="2">
-        Official Angelina Nail Supply&apos;s Support Center. You can find a
-        quick solution here.
+        Official Angelina Nail Supply&apos;s Support Center.
       </Text>
       <Text as="p" size="2">
-        Our support emails angelinanailsupply@gmail.com or
-        info@angelinanailsupply.com
+        Can not find an answer. Submit the form below.
       </Text>
-      <Text size="2">Can not find an answer. Submit the form below</Text>
       <Box>
         <Button size="2" variant="outline">
-          <Link href="/issues/new">Submit New Issue</Link>
+          <Link href="/issues/new">Submit Form</Link>
         </Button>
       </Box>
       {session && <QuestionActions />}
