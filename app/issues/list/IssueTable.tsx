@@ -21,7 +21,7 @@ const IssueTable = ({ searchParams, issues }: Props) => {
   return (
     <Table.Root variant="surface">
       <Table.Header>
-        <Table.Row>
+        <Table.Row align="center">
           {columns.map((column) => (
             <Table.ColumnHeaderCell
               key={column.value}
@@ -46,7 +46,7 @@ const IssueTable = ({ searchParams, issues }: Props) => {
       </Table.Header>
       <Table.Body>
         {issues.map((issue) => (
-          <Table.Row key={issue.id}>
+          <Table.Row key={issue.id} align="center">
             <Table.Cell>
               <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
               <div className="block md:hidden space-x-3">
@@ -60,10 +60,10 @@ const IssueTable = ({ searchParams, issues }: Props) => {
             <Table.Cell className="hidden md:table-cell">
               <QuestionCategoryBadge category={issue.category} />
             </Table.Cell>
-            <Table.Cell className="hidden md:table-cell">
+            <Table.Cell className="text-xs hidden md:table-cell">
               {issue.createdAt.toDateString()}
             </Table.Cell>
-            <Table.Cell className="hidden md:table-cell">
+            <Table.Cell className="text-xs hidden md:table-cell">
               {issue.updatedAt.toDateString()}
             </Table.Cell>
           </Table.Row>
