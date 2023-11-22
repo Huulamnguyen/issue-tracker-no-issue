@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import QuestionActions from "./QuestionActions";
 import QuestionsAccordion from "./QuestionsAccordion";
 import { Metadata } from "next";
+import { CalloutInfoMessage } from "@/app/components";
 
 const QuestionsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -15,17 +16,14 @@ const QuestionsPage = async () => {
 
   return (
     <Flex direction="column" gap="2">
-      <Text size="5" color="violet">
-        Frequently Asked Questions
+      <Text as="p" size={{ initial: "2", sm: "4" }} color="teal">
+        Official Angelina Nail Supply&apos;s Support Center
       </Text>
-      <Text as="p" size="2">
-        Official Angelina Nail Supply&apos;s Support Center.
-      </Text>
-      <Text as="p" size="2">
+      <CalloutInfoMessage>
         Can not find an answer. Submit the form below.
-      </Text>
+      </CalloutInfoMessage>
       <Box>
-        <Button size="2" variant="outline">
+        <Button size={{ initial: "1", sm: "2" }} variant="outline">
           <Link href="/issues/new">Submit Form</Link>
         </Button>
       </Box>
