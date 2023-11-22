@@ -125,7 +125,7 @@ const QuestionForm = ({ question }: { question?: Question }) => {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-        <Button disabled={isSubmitting}>
+        <Button variant="classic" disabled={isSubmitting}>
           {question ? "Update Question" : "Submit New Question"}{" "}
           {isSubmitting && <Spinner />}
         </Button>

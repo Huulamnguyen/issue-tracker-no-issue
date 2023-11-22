@@ -36,7 +36,7 @@ export default function RootLayout({
         <QueryClientProvider>
           <AuthProvider>
             <Theme
-              accentColor="violet"
+              accentColor="teal"
               className="min-h-screen bg-gray-50 flex flex-col"
             >
               <Link
