@@ -46,7 +46,7 @@ export default function RootLayout({
                 <AnnouncementBar message={announcement} />
               </Link>
               <NavBar />
-              <main className="px-5 flex-grow">
+              <main className="px-3 pb-3 flex-grow">
                 <Container>{children}</Container>
               </main>
               <Footer />
