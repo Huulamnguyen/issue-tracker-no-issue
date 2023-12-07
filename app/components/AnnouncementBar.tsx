@@ -5,7 +5,7 @@ interface Props {
 
 const AnnouncementBar = ({ message }: Props) => {
   return (
-    <div className="bg-amber-700 text-white py-3 px-4">
+    <div className="bg-red-500 text-white py-3 px-4">
       <div className="container mx-auto">
         <p className="text-center text-sm">{message}</p>
       </div>

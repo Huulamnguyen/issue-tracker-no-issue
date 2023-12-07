@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export const announcement =
-  "🎁💝 Sale up to 20% Black Friday and Cyber Monday. Check them out now";
+  "🎁💝 Sale up to 20% | Merry Christmas and Happy New Year 2024. Check them out now";
 
 export default function RootLayout({
   children,
