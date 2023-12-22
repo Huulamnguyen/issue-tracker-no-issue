@@ -21,7 +21,7 @@ export default async function Home() {
     where: { status: "CLOSED" },
   });
 
-  if (session) {
+  if (session && session.user?.email === process.env.ADMIN) {
     return (
       <Grid columns={{ initial: "1", md: "2" }} gap="5">
         <Flex direction="column" gap="5">

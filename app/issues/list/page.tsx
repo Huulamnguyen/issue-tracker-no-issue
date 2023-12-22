@@ -38,7 +38,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   const issueCount = await prisma.issue.count({ where });
 
-  if (session) {
+  if (session && session.user?.email === process.env.ADMIN) {
     return (
       <>
         <Flex direction="column" gap="3">

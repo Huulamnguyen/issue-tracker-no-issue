@@ -1,4 +1,5 @@
 "use client";
+
 import QuestionCategoryBadge from "@/app/components/QuestionCategoryBadge";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Question } from "@prisma/client";
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const QuestionsAccordion = ({ questions }: Props) => {
-  const { status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <Card>
@@ -31,7 +32,7 @@ const QuestionsAccordion = ({ questions }: Props) => {
             <ReactMarkdown className="text-sm leading-relaxed">
               {question.description}
             </ReactMarkdown>
-            {status === "authenticated" && (
+            {session && session.user?.email === "liamnguyen.swe@gmail.com" && (
               <Flex justify="end" mt="3" gap="3">
                 <DeleteQuestionButton questionId={question.id} />
                 <EditQuestionButton questionId={question.id} />

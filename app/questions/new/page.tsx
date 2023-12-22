@@ -1,5 +1,8 @@
+import authOptions from "@/app/auth/authOptions";
+import { getServerSession } from "next-auth";
 import dynamic from "next/dynamic";
 import QuestionFormSkeleton from "./loading";
+import { CalloutErrorMessage } from "@/app/components";
 
 const QuestionForm = dynamic(
   () => import("@/app/questions/_components/QuestionForm"),
@@ -9,8 +12,14 @@ const QuestionForm = dynamic(
   }
 );
 
-const NewQuestionPage = () => {
-  return <QuestionForm />;
+const NewQuestionPage = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (session && session.user?.email === process.env.ADMIN) {
+    return <QuestionForm />;
+  }
+
+  return <CalloutErrorMessage>Access Denied</CalloutErrorMessage>;
 };
 
 export default NewQuestionPage;

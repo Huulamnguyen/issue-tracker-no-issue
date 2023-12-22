@@ -6,7 +6,7 @@ import { Button, Container, DropdownMenu } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 const NavLinks = () => {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const currentPath = usePathname();
 
   const protectedLinks = [
@@ -19,7 +19,10 @@ const NavLinks = () => {
   const publicLinks = [{ label: "Questions", href: "/questions/list" }];
 
   const displayLinks =
-    status === "unauthenticated" ? publicLinks : protectedLinks;
+    status === "authenticated" &&
+    session.user?.email === "liamnguyen.swe@gmail.com"
+      ? protectedLinks
+      : publicLinks;
 
   return (
     <>

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
-import CalloutMessage from "@/app/components/CalloutErrorMessage";
+import { CalloutErrorMessage } from "@/app/components";
 
 const QuestionForm = dynamic(
   () => import("@/app/questions/_components/QuestionForm"),
@@ -27,11 +27,11 @@ const EditQuestionPage = async ({ params }: Props) => {
 
   if (!question) notFound();
 
-  if (session) {
+  if (session && session.user?.email === process.env.ADMIN) {
     return <QuestionForm question={question} />;
   }
 
-  return <CalloutMessage>Access Denied. Please login!</CalloutMessage>;
+  return <CalloutErrorMessage>Access Denied</CalloutErrorMessage>;
 };
 
 export default EditQuestionPage;

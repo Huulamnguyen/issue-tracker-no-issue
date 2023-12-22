@@ -9,7 +9,7 @@ interface Props {
 
 const CalloutInfoMessage = ({ children }: Props) => {
   return (
-    <Callout.Root size={{ initial: "1", sm: "2" }} color="green">
+    <Callout.Root size={{ initial: "1", sm: "2" }} color="crimson">
       <Callout.Icon>
         <InfoCircledIcon />
       </Callout.Icon>
