@@ -27,12 +27,7 @@ const DeleteQuestionButton = ({ questionId }: { questionId: number }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button
-            color="red"
-            disabled={isDeleting}
-            radius="full"
-            variant="outline"
-          >
+          <Button color="red" disabled={isDeleting} radius="full">
             <TrashIcon />
             {isDeleting && <Spinner />}
           </Button>

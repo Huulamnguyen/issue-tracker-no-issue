@@ -34,8 +34,8 @@ const QuestionsAccordion = ({ questions }: Props) => {
             </ReactMarkdown>
             {session && session.user?.email === "liamnguyen.swe@gmail.com" && (
               <Flex justify="end" mt="3" gap="3">
-                <DeleteQuestionButton questionId={question.id} />
                 <EditQuestionButton questionId={question.id} />
+                <DeleteQuestionButton questionId={question.id} />
               </Flex>
             )}
           </AccordionItem>
