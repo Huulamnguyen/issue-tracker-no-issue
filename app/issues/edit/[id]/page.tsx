@@ -24,7 +24,7 @@ const EditIssuePage = async ({ params }: Props) => {
 
   if (!issue) notFound();
 
-  if (session && session.user?.name === process.env.ADMIN) {
+  if (session && session.user?.email === process.env.ADMIN) {
     return <IssueForm issue={issue} />;
   }
 
