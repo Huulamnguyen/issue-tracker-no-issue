@@ -75,8 +75,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       setTimeout(async () => {
         if (session?.user?.email === "liamnguyen.swe@gmail.com") {
           router.push("/issues/list");
+        } else {
+          router.push("/questions/list");
         }
-        router.push("/questions/list");
         router.refresh();
       }, 1000);
     } catch (error) {
