@@ -2,7 +2,7 @@ import authOptions from "@/app/auth/authOptions";
 import { getServerSession } from "next-auth";
 import dynamic from "next/dynamic";
 import QuestionFormSkeleton from "./loading";
-import { CalloutErrorMessage } from "@/app/components";
+import { AccessDeny } from "@/app/components";
 
 const QuestionForm = dynamic(
   () => import("@/app/questions/_components/QuestionForm"),
@@ -19,7 +19,7 @@ const NewQuestionPage = async () => {
     return <QuestionForm />;
   }
 
-  return <CalloutErrorMessage>Access Denied</CalloutErrorMessage>;
+  return <AccessDeny />;
 };
 
 export default NewQuestionPage;

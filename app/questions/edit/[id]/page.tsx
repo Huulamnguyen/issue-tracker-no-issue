@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
-import { CalloutErrorMessage } from "@/app/components";
+import { AccessDeny } from "@/app/components";
 
 const QuestionForm = dynamic(
   () => import("@/app/questions/_components/QuestionForm"),
@@ -31,7 +31,7 @@ const EditQuestionPage = async ({ params }: Props) => {
     return <QuestionForm question={question} />;
   }
 
-  return <CalloutErrorMessage>Access Denied</CalloutErrorMessage>;
+  return <AccessDeny />;
 };
 
 export default EditQuestionPage;

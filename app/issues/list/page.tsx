@@ -1,5 +1,5 @@
 import authOptions from "@/app/auth/authOptions";
-import { CalloutErrorMessage, CalloutInfoMessage } from "@/app/components";
+import { AccessDeny, CalloutInfoMessage } from "@/app/components";
 import Pagination from "@/app/components/Pagination";
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
@@ -59,9 +59,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
       </>
     );
   }
-  return (
-    <CalloutErrorMessage>Access Denied. Please login!</CalloutErrorMessage>
-  );
+  return <AccessDeny />;
 };
 
 export const dynamic = "force-dynamic";

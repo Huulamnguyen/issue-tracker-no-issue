@@ -16,11 +16,11 @@ const QuestionsPage = async () => {
 
   return (
     <Flex direction="column" gap="2">
-      <Text as="p" size={{ initial: "2", sm: "4" }}>
+      <Text align="center" as="p" size={{ initial: "2", sm: "4" }}>
         Official Angelina Nail Supply&apos;s Support Center
       </Text>
       <CalloutInfoMessage>
-        Can not find an answer. Submit the form below.
+        CANNOT find an answer. Submit the form below.
       </CalloutInfoMessage>
       <Box>
         <Button size={{ initial: "1", sm: "2" }} variant="outline">

@@ -1,12 +1,12 @@
 import prisma from "@/prisma/client";
-import IssueSummary from "./IssueSummary";
-import LatestIssues from "./LatestIssues";
-import IssueChart from "./IssueChart";
 import { Flex, Grid } from "@radix-ui/themes";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
+import IssueChart from "./IssueChart";
+import IssueSummary from "./IssueSummary";
+import LatestIssues from "./LatestIssues";
 import authOptions from "./auth/authOptions";
-import { CalloutErrorMessage } from "./components";
+import { AccessDeny } from "./components";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -32,9 +32,7 @@ export default async function Home() {
       </Grid>
     );
   }
-  return (
-    <CalloutErrorMessage>Access Denied. Please Login!</CalloutErrorMessage>
-  );
+  return <AccessDeny />;
 }
 
 export const dynamic = "force-dynamic";

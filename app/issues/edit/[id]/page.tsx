@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import IssueFormSkeleton from "./loading";
-import { CalloutErrorMessage } from "@/app/components";
+import { AccessDeny } from "@/app/components";
 
 const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
   ssr: false,
@@ -28,7 +28,7 @@ const EditIssuePage = async ({ params }: Props) => {
     return <IssueForm issue={issue} />;
   }
 
-  return <CalloutErrorMessage>Access Denied!</CalloutErrorMessage>;
+  return <AccessDeny />;
 };
 
 export default EditIssuePage;

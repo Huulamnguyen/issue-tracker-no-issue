@@ -73,45 +73,42 @@ const QuestionForm = ({ question }: { question?: Question }) => {
       )}
       <form className="space-y-3" onSubmit={onSubmit}>
         <Grid gap="3">
-          <Box>
-            <TextField.Root>
-              <TextField.Input
-                defaultValue={question?.title}
-                placeholder="Question title"
-                {...register("title")}
-              />
-            </TextField.Root>
-          </Box>
-          <Box>
-            <Controller
-              name="category"
-              control={control}
-              defaultValue={question?.category}
-              render={({ field: { onChange } }) => (
-                <Select.Root
-                  defaultValue={question?.category}
-                  onValueChange={(value) => onChange(value)}
-                >
-                  <Select.Trigger
-                    placeholder={
-                      question ? question.category : "Choose a category"
-                    }
-                  />
-                  <Select.Content>
-                    {categories.map((category) => (
-                      <Select.Item
-                        key={category.value}
-                        value={category.value}
-                        disabled={question?.category === category.value}
-                      >
-                        {category.label}
-                      </Select.Item>
-                    ))}
-                  </Select.Content>
-                </Select.Root>
-              )}
+          <TextField.Root>
+            <TextField.Input
+              defaultValue={question?.title}
+              placeholder="Question title"
+              {...register("title")}
             />
-          </Box>
+          </TextField.Root>
+
+          <Controller
+            name="category"
+            control={control}
+            defaultValue={question?.category}
+            render={({ field: { onChange } }) => (
+              <Select.Root
+                defaultValue={question?.category}
+                onValueChange={(value) => onChange(value)}
+              >
+                <Select.Trigger
+                  placeholder={
+                    question ? question.category : "Choose a category"
+                  }
+                />
+                <Select.Content>
+                  {categories.map((category) => (
+                    <Select.Item
+                      key={category.value}
+                      value={category.value}
+                      disabled={question?.category === category.value}
+                    >
+                      {category.label}
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
+            )}
+          />
         </Grid>
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
 

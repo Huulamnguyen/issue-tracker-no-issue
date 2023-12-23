@@ -27,7 +27,7 @@ import { z } from "zod";
 type IssueFormData = z.infer<typeof issueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const router = useRouter();
   const {
     register,
@@ -67,20 +67,16 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
       else {
         await axios.post("/api/issues", data);
-        if (status === "unauthenticated") {
-          await axios.post("/api/send-confirm-email", data);
-          await axios.post("/api/send-received-email", data);
-        } else {
-          await axios.post("/api/send-received-email", data);
-        }
+        await axios.post("/api/send-confirm-email", data);
+        await axios.post("/api/send-received-email", data);
       }
 
       setSucessfullySubmitted(true);
       setTimeout(async () => {
-        status === "unauthenticated"
-          ? router.push("/questions/list")
-          : router.push("/issues/list");
-
+        if (session?.user?.email === "liamnguyen.swe@gmail.com") {
+          router.push("/issues/list");
+        }
+        router.push("/questions/list");
         router.refresh();
       }, 1000);
     } catch (error) {
@@ -93,16 +89,10 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   if (sucessfullySubmitted) {
     return (
       <>
-        {status === "unauthenticated" ? (
-          <CalloutInfoMessage>
-            Susucessfully Submitted the form. We will get back to you soon by
-            your email in next 48 hours. Thank you!
-          </CalloutInfoMessage>
-        ) : (
-          <CalloutInfoMessage>
-            Susucessfully Submitted the form. Redirecting to Issue List
-          </CalloutInfoMessage>
-        )}
+        <CalloutInfoMessage>
+          Susucessfully Submitted the form. We will get back to you soon by your
+          email in next 48 hours. Thank you!
+        </CalloutInfoMessage>
       </>
     );
   }
@@ -125,86 +115,81 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
               />
             </TextField.Root>
           </Box>
-          <Flex gap="3">
-            {issue && (
-              <Box>
-                <Controller
-                  name="status"
-                  control={control}
+
+          {issue && (
+            <Controller
+              name="status"
+              control={control}
+              defaultValue={issue?.status}
+              render={({ field: { onChange } }) => (
+                <Select.Root
                   defaultValue={issue?.status}
-                  render={({ field: { onChange } }) => (
-                    <Select.Root
-                      defaultValue={issue?.status}
-                      onValueChange={(value) => onChange(value)}
-                    >
-                      <Select.Trigger />
-                      <Select.Content>
-                        <Select.Group>
-                          <Select.Label>Status</Select.Label>
-                          {statuses.map((status) => (
-                            <Select.Item
-                              key={status.value}
-                              disabled={issue?.status === status.value}
-                              value={status.value!}
-                            >
-                              {status.label}
-                            </Select.Item>
-                          ))}
-                        </Select.Group>
-                      </Select.Content>
-                    </Select.Root>
-                  )}
-                />
-              </Box>
-            )}
-            <Box>
-              <Controller
-                name="category"
-                control={control}
-                defaultValue={issue?.category}
-                render={({ field: { onChange } }) => (
-                  <Select.Root
-                    defaultValue={issue?.category}
-                    onValueChange={(value) => onChange(value)}
-                  >
-                    <Select.Trigger placeholder="Category" />
-                    <Select.Content>
-                      <Select.Group>
-                        <Select.Label>Category</Select.Label>
-                        {categories.map((category) => (
-                          <Select.Item
-                            key={category.value}
-                            disabled={issue?.category === category.value}
-                            value={category.value!}
-                          >
-                            {category.label}
-                          </Select.Item>
-                        ))}
-                      </Select.Group>
-                    </Select.Content>
-                  </Select.Root>
-                )}
+                  onValueChange={(value) => onChange(value)}
+                >
+                  <Select.Trigger />
+                  <Select.Content>
+                    <Select.Group>
+                      <Select.Label>Status</Select.Label>
+                      {statuses.map((status) => (
+                        <Select.Item
+                          key={status.value}
+                          disabled={issue?.status === status.value}
+                          value={status.value!}
+                        >
+                          {status.label}
+                        </Select.Item>
+                      ))}
+                    </Select.Group>
+                  </Select.Content>
+                </Select.Root>
+              )}
+            />
+          )}
+          <Grid columns={{ initial: "1", md: "3" }} gap="5">
+            <Controller
+              name="category"
+              control={control}
+              defaultValue={issue?.category}
+              render={({ field: { onChange } }) => (
+                <Select.Root
+                  defaultValue={issue?.category}
+                  onValueChange={(value) => onChange(value)}
+                >
+                  <Select.Trigger placeholder="Category" />
+                  <Select.Content>
+                    <Select.Group>
+                      <Select.Label>Category</Select.Label>
+                      {categories.map((category) => (
+                        <Select.Item
+                          key={category.value}
+                          disabled={issue?.category === category.value}
+                          value={category.value!}
+                        >
+                          {category.label}
+                        </Select.Item>
+                      ))}
+                    </Select.Group>
+                  </Select.Content>
+                </Select.Root>
+              )}
+            />
+
+            <TextField.Root>
+              <TextField.Input
+                defaultValue={issue?.customerEmail || undefined}
+                placeholder="Email"
+                {...register("customerEmail")}
               />
-            </Box>
-            <Box>
-              <TextField.Root>
-                <TextField.Input
-                  defaultValue={issue?.customerEmail || undefined}
-                  placeholder="Email"
-                  {...register("customerEmail")}
-                />
-              </TextField.Root>
-            </Box>
-            <Box>
-              <TextField.Root>
-                <TextField.Input
-                  defaultValue={issue?.orderNumber || undefined}
-                  placeholder="Order ANS-xxxx"
-                  {...register("orderNumber")}
-                />
-              </TextField.Root>
-            </Box>
-          </Flex>
+            </TextField.Root>
+
+            <TextField.Root>
+              <TextField.Input
+                defaultValue={issue?.orderNumber || undefined}
+                placeholder="Order ANS-xxxx"
+                {...register("orderNumber")}
+              />
+            </TextField.Root>
+          </Grid>
         </Grid>
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <ErrorMessage>{errors.customerEmail?.message}</ErrorMessage>
